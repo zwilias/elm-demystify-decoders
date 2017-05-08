@@ -1,4 +1,4 @@
-port module Exercise01.Tests exposing (all)
+module Exercise01.Tests exposing (all)
 
 import Test exposing (..)
 import Expect
