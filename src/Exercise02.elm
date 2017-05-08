@@ -25,8 +25,6 @@ decoder =
 
 
 
---fail
---"Implement me!"
 {- Once you think you're done, run the tests for this exercise from the root of
    the project:
 
