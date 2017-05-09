@@ -2,6 +2,8 @@
 
 ## Exercise 01
 
+-> primitive
+
 ```js
 var input = 5;
 ```
@@ -12,6 +14,8 @@ output =
 ```
 
 ## Exercise 02
+
+-> combining primitives
 
 ```js
 var input = [ "foo", "bar", "baz" ];
@@ -24,6 +28,8 @@ output =
 
 ## Exercise 03
 
+-> introducing map
+
 ```js
 var input = [ "foo", "bar", "baz" ];
 ```
@@ -34,6 +40,8 @@ output =
 ```
 
 ## Exercise 04
+
+-> more map: map2
 
 ```js
 var input = { "name": "Josh", "age": 50 };
