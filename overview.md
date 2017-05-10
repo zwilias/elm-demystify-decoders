@@ -41,6 +41,20 @@ output =
 
 ## Exercise 04
 
+-> introducing field
+
+
+```js
+var input = { "age": 50 }
+```
+
+```elm
+output =
+    50
+```
+
+## Exercise 05
+
 -> more map: map2
 
 ```js
