@@ -10,7 +10,7 @@ import Exercise05 exposing (decoder)
 
 all : Test
 all =
-    describe "Exercise 03"
+    describe "Exercise 05"
         [ test "Decode `{ \"term\": \"foo\", \"repeat\": 3 }`" <|
             \() ->
                 let

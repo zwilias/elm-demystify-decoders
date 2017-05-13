@@ -10,7 +10,7 @@ import Exercise06 exposing (decoder, Person)
 
 all : Test
 all =
-    describe "Exercise 03"
+    describe "Exercise 06"
         [ test "Decode `{ \"name\": \"Josh\", \"age\": 50 }`" <|
             \() ->
                 let

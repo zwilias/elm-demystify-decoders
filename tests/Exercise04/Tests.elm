@@ -10,14 +10,14 @@ import Exercise04 exposing (decoder)
 
 all : Test
 all =
-    describe "Exercise 03"
+    describe "Exercise 04"
         [ test "Decode `{ \"age\": 50 }`" <|
             \() ->
                 let
                     input : String
                     input =
                         """
-                        [ "foo", "bar" ]
+                        { "age": 50 }
                         """
                 in
                     Json.Decode.decodeString decoder input

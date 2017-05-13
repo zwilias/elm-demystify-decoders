@@ -25,7 +25,7 @@ allTests =
 
 main : TestProgram
 main =
-    run emit Exercise01.Tests.all
+    run emit allTests
 
 
 port emit : ( String, Value ) -> Cmd msg
