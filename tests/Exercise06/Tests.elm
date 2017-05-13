@@ -1,27 +1,27 @@
-module Exercise05.Tests exposing (all)
+module Exercise06.Tests exposing (all)
 
 import Test exposing (..)
 import Expect
-import Fuzz exposing (string, Fuzzer, intRange)
+import Fuzz exposing (string, Fuzzer, int)
 import Json.Decode
 import Json.Encode as Encode exposing (Value)
-import Exercise05 exposing (decoder)
+import Exercise06 exposing (decoder, Person)
 
 
 all : Test
 all =
     describe "Exercise 03"
-        [ test "Decode `{ \"term\": \"foo\", \"repeat\": 3 }`" <|
+        [ test "Decode `{ \"name\": \"Josh\", \"age\": 50 }`" <|
             \() ->
                 let
                     input : String
                     input =
                         """
-                        { "term": "foo", "repeat": 3 }
+                        { "name": "Josh", "age": 50 }
                         """
                 in
                     Json.Decode.decodeString decoder input
-                        |> Expect.equal (Ok "foofoofoo")
+                        |> Expect.equal (Ok <| Person "Josh" 50)
         , test "Does not decode `foo`" <|
             \() ->
                 let
@@ -35,25 +35,26 @@ all =
 
                         Err _ ->
                             Expect.pass
-        , fuzz2 string (intRange 0 50) "Decode random term+repeats" <|
-            \term repeat ->
+        , fuzz person "Decode random people" <|
+            \person ->
                 let
                     input : Value
                     input =
-                        encodeTerm term repeat
-
-                    output : String
-                    output =
-                        String.repeat repeat term
+                        encodePerson person
                 in
                     Json.Decode.decodeValue decoder input
-                        |> Expect.equal (Ok output)
+                        |> Expect.equal (Ok person)
         ]
 
 
-encodeTerm : String -> Int -> Value
-encodeTerm term repeat =
+person : Fuzzer Person
+person =
+    Fuzz.map2 Person string int
+
+
+encodePerson : Person -> Value
+encodePerson { name, age } =
     Encode.object
-        [ ( "term", Encode.string term )
-        , ( "repeat", Encode.int repeat )
+        [ ( "name", Encode.string name )
+        , ( "age", Encode.int age )
         ]

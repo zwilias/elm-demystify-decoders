@@ -56,17 +56,28 @@ output =
 ## Exercise 05
 
 -> more map: map2
+-> perhaps we can find a better function here? Something that isn't a constructor.
+-> how about String.repeat?
+
+```js
+var input = { "term": "foo", "repeat": 3 };
+```
+
+```elm
+output =
+    "foofoofoo"
+```
+
+## Exercise 06
+
+-> map2, and intro to decoding records.
+-> introduce magic constructors for fields with a type alias
 
 ```js
 var input = { "name": "Josh", "age": 50 };
 ```
 
 ```elm
-type alias Person =
-    { name : String
-    , age : int
-    }
-
 output =
     Person "Josh" 50
 ```
