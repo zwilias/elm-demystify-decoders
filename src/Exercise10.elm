@@ -48,7 +48,43 @@ type Role
 
 decoder : Decoder (List Person)
 decoder =
-    fail "This seems like a lot of work."
+    -- fail "This seems like a lot of work."
+    Json.Decode.list personDecoder
+
+
+personDecoder : Decoder Person
+personDecoder =
+    Json.Decode.map3 Person
+        (Json.Decode.field "username" Json.Decode.string)
+        (Json.Decode.field "role" roleDecoder)
+        (Json.Decode.field "details" personDetailsDecoder)
+
+
+personDetailsDecoder : Decoder PersonDetails
+personDetailsDecoder =
+    Json.Decode.map2 PersonDetails
+        (Json.Decode.field "registered" Json.Decode.string)
+        (Json.Decode.field "aliases" (Json.Decode.list Json.Decode.string))
+
+
+roleDecoder : Decoder Role
+roleDecoder =
+    Json.Decode.string
+        |> Json.Decode.andThen
+            (\role ->
+                case role of
+                    "newbie" ->
+                        Json.Decode.succeed Newbie
+
+                    "regular" ->
+                        Json.Decode.succeed Regular
+
+                    "oldfart" ->
+                        Json.Decode.succeed OldFart
+
+                    _ ->
+                        fail <| "Unknown role: '" ++ role ++ "'"
+            )
 
 
 
