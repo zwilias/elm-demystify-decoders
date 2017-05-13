@@ -30,7 +30,12 @@ import Json.Decode exposing (Decoder, fail)
 
 decoder : Decoder (List Int)
 decoder =
-    fail "Implement me!"
+    -- fail "Implement me!"
+    Json.Decode.oneOf
+        [ Json.Decode.list Json.Decode.int
+        , Json.Decode.map List.singleton Json.Decode.int
+        ]
+        |> Json.Decode.field "number"
 
 
 
