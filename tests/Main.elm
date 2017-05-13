@@ -10,6 +10,7 @@ import Exercise07.Tests
 import Exercise08.Tests
 import Exercise09.Tests
 import Exercise10.Tests
+import Exercise11.Tests
 import Test exposing (Test, describe)
 import Test.Runner.Node exposing (run, TestProgram)
 import Json.Encode exposing (Value)
@@ -28,6 +29,7 @@ allTests =
         , Exercise08.Tests.all
         , Exercise09.Tests.all
         , Exercise10.Tests.all
+        , Exercise11.Tests.all
         ]
 
 

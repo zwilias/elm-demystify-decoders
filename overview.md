@@ -106,3 +106,14 @@ decode "green" == succeed Green
 ## Exercise 09
 
 -> full on union type decoder!
+
+## Exercise 10
+
+-> full on datastructure decoder!
+
+## TODO
+
+- using oneOf
+- recursive decoders
+- using pipeline
+- a generalized, recursive decoder
