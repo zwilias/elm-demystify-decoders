@@ -81,3 +81,16 @@ var input = { "name": "Josh", "age": 50 };
 output =
     Person "Josh" 50
 ```
+
+## Exercise 07
+
+-> succeed
+
+```js
+var input = *random JS variable*;
+```
+
+```elm
+output =
+    "sure."
+```
