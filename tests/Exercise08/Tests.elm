@@ -26,5 +26,5 @@ all =
         , fuzz string "Fails when fed other values" <|
             \randomString ->
                 decodeValue (decoder randomString) null
-                    |> Expect.equal (Err <| "I don't know a color named " ++ randomString)
+                    |> Expect.equal (Err <| "I ran into a `fail` decoder: I don't know a color named " ++ randomString)
         ]
