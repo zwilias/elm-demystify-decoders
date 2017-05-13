@@ -51,7 +51,10 @@ type alias Person =
 
 decoder : Decoder Person
 decoder =
-    fail "Implement me!"
+    -- fail "Implement me!"
+    Json.Decode.map2 Person
+        (Json.Decode.field "name" Json.Decode.string)
+        (Json.Decode.field "age" Json.Decode.int)
 
 
 

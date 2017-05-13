@@ -19,7 +19,12 @@ import Json.Decode exposing (Decoder, fail)
 
 decoder : Decoder (List String)
 decoder =
-    fail "This is escalating quickly!"
+    -- fail "This is escalating quickly!"
+    {- Alternative:
+       Json.Decode.list (Json.Decode.string |> Json.Decode.map String.toUpper)
+    -}
+    Json.Decode.list Json.Decode.string
+        |> Json.Decode.map (List.map String.toUpper)
 
 
 
