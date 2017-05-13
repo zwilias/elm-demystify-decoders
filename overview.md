@@ -94,3 +94,15 @@ var input = *random JS variable*;
 output =
     "sure."
 ```
+
+## Exercise 08
+
+-> input + succeed/fail
+
+```
+decode "green" == succeed Green
+```
+
+## Exercise 09
+
+-> full on union type decoder!
