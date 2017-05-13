@@ -37,12 +37,25 @@ type Fruit
 
 decoder : Decoder Fruit
 decoder =
-    fail "Nevermind me."
+    -- fail "Nevermind me."
+    Json.Decode.string |> Json.Decode.andThen fruitDecoder
 
 
 fruitDecoder : String -> Decoder Fruit
 fruitDecoder fruitAsString =
-    fail "Unknown fruit."
+    -- fail "Unknown fruit."
+    case fruitAsString of
+        "apple" ->
+            Json.Decode.succeed Apple
+
+        "orange" ->
+            Json.Decode.succeed Orange
+
+        "banana" ->
+            Json.Decode.succeed Banana
+
+        _ ->
+            fail "Unknown fruit."
 
 
 

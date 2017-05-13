@@ -30,7 +30,19 @@ type Color
 
 decoder : String -> Decoder Color
 decoder colorString =
-    fail <| "I don't know a color named " ++ colorString
+    -- fail <| "I don't know a color named " ++ colorString
+    case colorString of
+        "green" ->
+            Json.Decode.succeed Green
+
+        "blue" ->
+            Json.Decode.succeed Blue
+
+        "red" ->
+            Json.Decode.succeed Red
+
+        _ ->
+            fail <| "I don't know a color named " ++ colorString
 
 
 
