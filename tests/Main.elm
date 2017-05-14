@@ -12,6 +12,7 @@ import Exercise09.Tests
 import Exercise10.Tests
 import Exercise11.Tests
 import Exercise12.Tests
+import Exercise13.Tests
 import Test exposing (Test, describe)
 import Test.Runner.Node exposing (run, TestProgram)
 import Json.Encode exposing (Value)
@@ -32,6 +33,7 @@ allTests =
         , Exercise10.Tests.all
         , Exercise11.Tests.all
         , Exercise12.Tests.all
+        , Exercise13.Tests.all
         ]
 
 

@@ -113,7 +113,7 @@ decode "green" == succeed Green
 
 ## TODO
 
-- using oneOf
-- recursive decoders
-- using pipeline
-- a generalized, recursive decoder
+[x] using oneOf
+[x] recursive decoders
+[ ] using pipeline
+[ ] a generalized, recursive decoder
