@@ -1,6 +1,17 @@
 module Exercise12 exposing (Tree(..), decoder)
 
-import Json.Decode exposing (Decoder, fail)
+import Json.Decode
+    exposing
+        ( Decoder
+        , fail
+        , map2
+        , lazy
+        , oneOf
+        , string
+        , int
+        , list
+        , field
+        )
 
 
 
@@ -43,7 +54,25 @@ type
 
 decoder : Decoder Tree
 decoder =
-    fail "I'm not a tree."
+    --fail "I'm not a tree."
+    oneOf
+        [ lazy (\_ -> branchDecoder)
+        , leafDecoder
+        ]
+
+
+branchDecoder : Decoder Tree
+branchDecoder =
+    map2 Branch
+        (field "name" string)
+        (field "children" (list <| lazy (\_ -> decoder)))
+
+
+leafDecoder : Decoder Tree
+leafDecoder =
+    map2 Leaf
+        (field "name" string)
+        (field "value" int)
 
 
 
