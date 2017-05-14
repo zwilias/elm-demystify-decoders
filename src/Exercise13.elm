@@ -11,8 +11,8 @@ import Json.Decode exposing (Decoder, fail)
 
    A few pointers to prevent you from making silly mistakes:
 
-   - when you encounter a number, make sure that it comes out as an `IntVal` if it is an integer, and isn't always returned as a `FloatVal`
-   - `keyValuePairs` flips the order - since a list is an ordered data-structure, you'll have to adjust for that
+   - make sure `3` is an `IntVal` and not a `FloatVal`
+   - `keyValuePairs` flips the order - adjust for that!
 -}
 
 
