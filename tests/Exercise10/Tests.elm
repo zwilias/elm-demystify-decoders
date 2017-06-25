@@ -82,4 +82,4 @@ role =
 oneOf : List (Fuzzer a) -> Fuzzer a
 oneOf =
     List.map ((,) 1)
-        >> Fuzz.frequencyOrCrash
+        >> Fuzz.frequency

@@ -57,7 +57,7 @@ tree maxDepth =
     if maxDepth == 0 then
         leaf
     else
-        Fuzz.frequencyOrCrash
+        Fuzz.frequency
             [ ( 1, leaf )
             , ( 1, branch (tree <| maxDepth - 1) )
             ]

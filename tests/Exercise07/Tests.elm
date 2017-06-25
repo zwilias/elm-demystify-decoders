@@ -67,4 +67,4 @@ primitives =
 oneOf : List (Fuzzer a) -> Fuzzer a
 oneOf =
     List.map (\f -> ( 1, f ))
-        >> Fuzz.frequencyOrCrash
+        >> Fuzz.frequency

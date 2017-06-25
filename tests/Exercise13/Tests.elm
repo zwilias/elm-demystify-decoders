@@ -1,11 +1,11 @@
 module Exercise13.Tests exposing (all)
 
-import Test exposing (..)
+import Exercise13 exposing (JsValue(..), decoder)
 import Expect
-import Json.Decode exposing (decodeValue)
 import Fuzz exposing (Fuzzer, string)
+import Json.Decode exposing (decodeValue)
 import Json.Encode as Encode exposing (Value, null)
-import Exercise13 exposing (decoder, JsValue(..))
+import Test exposing (..)
 
 
 all : Test
@@ -58,7 +58,7 @@ jsValue maxDepth =
     if maxDepth == 0 then
         oneOf primitives
     else
-        (structure maxDepth)
+        structure maxDepth
             ++ primitives
             |> oneOf
 
@@ -74,13 +74,13 @@ structure maxDepth =
         object : Fuzzer JsValue
         object =
             Fuzz.map2
-                ((,))
+                (,)
                 Fuzz.string
                 (jsValue (maxDepth - 1))
                 |> Fuzz.list
                 |> Fuzz.map ObjectVal
     in
-        [ list, object ]
+    [ list, object ]
 
 
 primitives : List (Fuzzer JsValue)
@@ -96,4 +96,4 @@ primitives =
 oneOf : List (Fuzzer a) -> Fuzzer a
 oneOf =
     List.map (\f -> ( 1, f ))
-        >> Fuzz.frequencyOrCrash
+        >> Fuzz.frequency
