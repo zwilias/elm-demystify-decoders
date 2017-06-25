@@ -29,11 +29,11 @@ decoder =
    the project:
 
    - If you have installed `elm-test` globally:
-        `elm test tests/Exercise02/Main.elm`
+        `elm test tests/Exercise02`
 
    - If you have installed locally using `npm`:
-        `npm run elm-test tests/Exercise02/Main.elm`
+        `npm run elm-test tests/Exercise02`
 
    - If you have installed locally using `yarn`:
-        `yarn elm-test tests/Exercise02/Main.elm`
+        `yarn elm-test tests/Exercise02`
 -}

@@ -23,6 +23,6 @@ After solving an exercise, for example `Exercise01`, you can run the tests for
 that exercise. The method you use will depend on how you chose to install `elm`
 and `elm-test`:
 
-- `elm-test tests/Exercise01/Main.elm` - if you installed it globally
-- `npm run elm-test tests/Exercise01/Main.elm` - locally using `npm`
-- `yarn elm-test tests/Exercise01/Main.elm` - locally using `yarn`
+- `elm-test tests/Exercise01` - if you installed it globally
+- `npm run elm-test tests/Exercise01` - locally using `npm`
+- `yarn elm-test tests/Exercise01` - locally using `yarn`
