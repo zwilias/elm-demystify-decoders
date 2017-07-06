@@ -24,7 +24,7 @@ import Json.Decode exposing (Decoder, fail)
     Example output:
 
         Branch "parent"
-            [ Leaf Foo 5
+            [ Leaf "foo" 5
             , Branch "empty" []
             ]
 
