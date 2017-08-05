@@ -7,9 +7,11 @@ import Json.Decode exposing (Decoder, fail)
    Handling recursive data. So let's set the record straight.
 
    Recursive decoders look almost exactly like any other decoder, except for
-   one thing, and that one - very essential - things, stems from the fact that
+   one thing, and that one - very essential - thing stems from the fact that
    Elm is an eager language: every expression is executed as soon as all
-   parameters are available. When defining a recursive decoder, we're defining functions that don't explicitly take input; so their parameters are available, and you get into a self-refential loop.
+   parameters are available. When defining a recursive decoder, we're defining
+   functions that don't explicitly take input; so their parameters are
+   available, and you get into a self-refential loop.
 
    Now, of course, the Elm compiler has your back, and will dutifully tell you
    that you cannot do that, and even point out how to fix it. Thanks, Elm!

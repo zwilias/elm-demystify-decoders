@@ -5,7 +5,9 @@ import Json.Decode exposing (fail, Decoder)
 
 {- Now, onto the "real" stuff: decoding a JS object into an Elm record.
 
-   The record we'll be working with, had been given a type alias. This means that we can refer to the specific _shape_ of a record (which includes the names and types of the fields) by a name.
+   The record we'll be working with has been given a type alias. This means
+   that we can refer to the specific _shape_ of a record (which includes the
+   names and types of the fields) by a name.
 
    However, a type alias for records (and _only_ for records) does just one
    more thing: it creates a magical constructor function. In the case of

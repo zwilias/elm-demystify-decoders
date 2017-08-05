@@ -14,7 +14,7 @@ import Json.Decode exposing (fail, Decoder)
 
         var input = { "term": "foo", "repeat": 3 };
 
-   The expect output is the term-field, repeated `repeat` times:
+   The expected output is the "term" field, repeated `repeat` times:
 
         "foofoofoo"
 
