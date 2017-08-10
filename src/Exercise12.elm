@@ -31,7 +31,7 @@ import Json.Decode exposing (Decoder, fail)
             ]
 
    -- NOTE: if you run into a runtime exception with your decoder; please read
-   [this document](TODO: link)
+   [this document](https://blog.ilias.xyz/help-my-recursive-decoder-caused-a-runtime-exception-453d46a99e1e)
 -}
 
 
