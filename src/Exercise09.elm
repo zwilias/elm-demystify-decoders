@@ -1,6 +1,7 @@
-module Exercise09 exposing (decoder, Fruit(..))
+module Exercise09 exposing (Fruit(..), decoder)
 
 import Json.Decode exposing (Decoder, fail)
+
 
 
 {- Decoding a union type is something that comes up regularly. And now, young

@@ -3,6 +3,7 @@ module Exercise02 exposing (decoder)
 import Json.Decode exposing (Decoder, fail)
 
 
+
 {- As a second step, let's decode something a tiny bit more complex, that will
    show you how to compose decoders.
 

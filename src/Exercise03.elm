@@ -3,6 +3,7 @@ module Exercise03 exposing (decoder)
 import Json.Decode exposing (Decoder, fail)
 
 
+
 {- So, this one is a tiny bit more challenging, since we don't want _just_ the
    contents of the JSON. No, we want them to be modified.
 

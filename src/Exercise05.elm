@@ -1,6 +1,7 @@
 module Exercise05 exposing (decoder)
 
-import Json.Decode exposing (fail, Decoder)
+import Json.Decode exposing (Decoder, fail)
+
 
 
 {- Now that you know how to create a decoder which includes calling a function

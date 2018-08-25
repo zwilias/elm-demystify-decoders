@@ -1,6 +1,7 @@
-module Exercise06 exposing (decoder, Person)
+module Exercise06 exposing (Person, decoder)
 
-import Json.Decode exposing (fail, Decoder)
+import Json.Decode exposing (Decoder, fail)
+
 
 
 {- Now, onto the "real" stuff: decoding a JS object into an Elm record.

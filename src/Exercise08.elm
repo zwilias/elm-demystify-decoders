@@ -1,6 +1,7 @@
-module Exercise08 exposing (decoder, Color(..))
+module Exercise08 exposing (Color(..), decoder)
 
 import Json.Decode exposing (Decoder, fail, succeed)
+
 
 
 {- You've already seen that a decoder can completely ignore whatever is going on

@@ -1,10 +1,10 @@
 module Exercise01.Tests exposing (all)
 
-import Test exposing (..)
+import Exercise01 exposing (decoder)
 import Expect
 import Fuzz exposing (int)
 import Json.Decode
-import Exercise01 exposing (decoder)
+import Test exposing (..)
 
 
 all : Test
@@ -17,8 +17,8 @@ all =
                     input =
                         "1"
                 in
-                    Json.Decode.decodeString decoder input
-                        |> Expect.equal (Ok 1)
+                Json.Decode.decodeString decoder input
+                    |> Expect.equal (Ok 1)
         , test "Does not decode `foo`" <|
             \() ->
                 let
@@ -26,19 +26,19 @@ all =
                     input =
                         "foo"
                 in
-                    case Json.Decode.decodeString decoder input of
-                        Ok _ ->
-                            Expect.fail "Did not expect your decoder to succeed decoding \"foo\""
+                case Json.Decode.decodeString decoder input of
+                    Ok _ ->
+                        Expect.fail "Did not expect your decoder to succeed decoding \"foo\""
 
-                        Err _ ->
-                            Expect.pass
+                    Err _ ->
+                        Expect.pass
         , fuzz int "Decode random integers" <|
             \randomInteger ->
                 let
                     input : String
                     input =
-                        toString randomInteger
+                        String.fromInt randomInteger
                 in
-                    Json.Decode.decodeString decoder input
-                        |> Expect.equal (Ok randomInteger)
+                Json.Decode.decodeString decoder input
+                    |> Expect.equal (Ok randomInteger)
         ]

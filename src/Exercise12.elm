@@ -3,6 +3,7 @@ module Exercise12 exposing (Tree(..), decoder)
 import Json.Decode exposing (Decoder, fail)
 
 
+
 {- There's one more interesting use case we've completely skipped so far.
    Handling recursive data. So let's set the record straight.
 
@@ -29,9 +30,6 @@ import Json.Decode exposing (Decoder, fail)
             [ Leaf "foo" 5
             , Branch "empty" []
             ]
-
-   -- NOTE: if you run into a runtime exception with your decoder; please read
-   [this document](https://blog.ilias.xyz/help-my-recursive-decoder-caused-a-runtime-exception-453d46a99e1e)
 -}
 
 

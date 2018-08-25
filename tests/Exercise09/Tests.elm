@@ -1,11 +1,11 @@
 module Exercise09.Tests exposing (all)
 
-import Test exposing (..)
+import Exercise09 exposing (Fruit(..), decoder)
 import Expect
-import Json.Decode exposing (decodeValue)
 import Fuzz exposing (Fuzzer, string)
+import Json.Decode exposing (decodeValue)
 import Json.Encode as Encode exposing (Value, null)
-import Exercise09 exposing (decoder, Fruit(..))
+import Test exposing (..)
 
 
 all : Test
