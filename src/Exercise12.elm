@@ -4,13 +4,13 @@ import Json.Decode
     exposing
         ( Decoder
         , fail
-        , map2
+        , field
+        , int
         , lazy
+        , list
+        , map2
         , oneOf
         , string
-        , int
-        , list
-        , field
         )
 
 
@@ -56,7 +56,7 @@ decoder : Decoder Tree
 decoder =
     --fail "I'm not a tree."
     oneOf
-        [ lazy (\_ -> branchDecoder)
+        [ branchDecoder
         , leafDecoder
         ]
 
