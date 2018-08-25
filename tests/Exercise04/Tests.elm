@@ -1,11 +1,11 @@
 module Exercise04.Tests exposing (all)
 
-import Test exposing (..)
+import Exercise04 exposing (decoder)
 import Expect
 import Fuzz exposing (int)
 import Json.Decode
 import Json.Encode as Encode exposing (Value)
-import Exercise04 exposing (decoder)
+import Test exposing (..)
 
 
 all : Test
@@ -20,8 +20,8 @@ all =
                         { "age": 50 }
                         """
                 in
-                    Json.Decode.decodeString decoder input
-                        |> Expect.equal (Ok 50)
+                Json.Decode.decodeString decoder input
+                    |> Expect.equal (Ok 50)
         , test "Does not decode `foo`" <|
             \() ->
                 let
@@ -29,12 +29,12 @@ all =
                     input =
                         "foo"
                 in
-                    case Json.Decode.decodeString decoder input of
-                        Ok _ ->
-                            Expect.fail "Did not expect your decoder to succeed decoding \"foo\""
+                case Json.Decode.decodeString decoder input of
+                    Ok _ ->
+                        Expect.fail "Did not expect your decoder to succeed decoding \"foo\""
 
-                        Err _ ->
-                            Expect.pass
+                    Err _ ->
+                        Expect.pass
         , fuzz int "Decode random ages" <|
             \age ->
                 let
@@ -43,6 +43,6 @@ all =
                         Encode.object
                             [ ( "age", Encode.int age ) ]
                 in
-                    Json.Decode.decodeValue decoder input
-                        |> Expect.equal (Ok age)
+                Json.Decode.decodeValue decoder input
+                    |> Expect.equal (Ok age)
         ]

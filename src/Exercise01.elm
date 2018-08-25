@@ -3,6 +3,7 @@ module Exercise01 exposing (decoder)
 import Json.Decode exposing (Decoder, fail)
 
 
+
 {- So, you're mystified by JSON decoding in Elm? No worries, let's try and make
    them *click* for you, by going through a set of exercises where you'll be
    gradually creating more and more complex JSON decoders.

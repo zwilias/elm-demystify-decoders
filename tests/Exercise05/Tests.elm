@@ -1,11 +1,11 @@
 module Exercise05.Tests exposing (all)
 
-import Test exposing (..)
+import Exercise05 exposing (decoder)
 import Expect
-import Fuzz exposing (string, Fuzzer, intRange)
+import Fuzz exposing (Fuzzer, intRange, string)
 import Json.Decode
 import Json.Encode as Encode exposing (Value)
-import Exercise05 exposing (decoder)
+import Test exposing (..)
 
 
 all : Test
@@ -20,8 +20,8 @@ all =
                         { "term": "foo", "repeat": 3 }
                         """
                 in
-                    Json.Decode.decodeString decoder input
-                        |> Expect.equal (Ok "foofoofoo")
+                Json.Decode.decodeString decoder input
+                    |> Expect.equal (Ok "foofoofoo")
         , test "Does not decode `foo`" <|
             \() ->
                 let
@@ -29,12 +29,12 @@ all =
                     input =
                         "foo"
                 in
-                    case Json.Decode.decodeString decoder input of
-                        Ok _ ->
-                            Expect.fail "Did not expect your decoder to succeed decoding \"foo\""
+                case Json.Decode.decodeString decoder input of
+                    Ok _ ->
+                        Expect.fail "Did not expect your decoder to succeed decoding \"foo\""
 
-                        Err _ ->
-                            Expect.pass
+                    Err _ ->
+                        Expect.pass
         , fuzz2 string (intRange 0 50) "Decode random term+repeats" <|
             \term repeat ->
                 let
@@ -46,8 +46,8 @@ all =
                     output =
                         String.repeat repeat term
                 in
-                    Json.Decode.decodeValue decoder input
-                        |> Expect.equal (Ok output)
+                Json.Decode.decodeValue decoder input
+                    |> Expect.equal (Ok output)
         ]
 
 

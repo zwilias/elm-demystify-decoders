@@ -3,6 +3,7 @@ module Exercise11 exposing (decoder)
 import Json.Decode exposing (Decoder, fail)
 
 
+
 {- Every once in a while, you'll have to deal with oddly structured data. Let's
    look at one very important tool when dealing with polymorphic data. In this
    exercise, you will decode a javascript value that will have a key `number`

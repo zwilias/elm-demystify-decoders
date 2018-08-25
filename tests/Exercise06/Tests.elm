@@ -1,11 +1,11 @@
 module Exercise06.Tests exposing (all)
 
-import Test exposing (..)
+import Exercise06 exposing (Person, decoder)
 import Expect
-import Fuzz exposing (string, Fuzzer, int)
+import Fuzz exposing (Fuzzer, int, string)
 import Json.Decode
 import Json.Encode as Encode exposing (Value)
-import Exercise06 exposing (decoder, Person)
+import Test exposing (..)
 
 
 all : Test
@@ -20,8 +20,8 @@ all =
                         { "name": "Josh", "age": 50 }
                         """
                 in
-                    Json.Decode.decodeString decoder input
-                        |> Expect.equal (Ok <| Person "Josh" 50)
+                Json.Decode.decodeString decoder input
+                    |> Expect.equal (Ok <| Person "Josh" 50)
         , test "Does not decode `foo`" <|
             \() ->
                 let
@@ -29,21 +29,21 @@ all =
                     input =
                         "foo"
                 in
-                    case Json.Decode.decodeString decoder input of
-                        Ok _ ->
-                            Expect.fail "Did not expect your decoder to succeed decoding \"foo\""
+                case Json.Decode.decodeString decoder input of
+                    Ok _ ->
+                        Expect.fail "Did not expect your decoder to succeed decoding \"foo\""
 
-                        Err _ ->
-                            Expect.pass
+                    Err _ ->
+                        Expect.pass
         , fuzz person "Decode random people" <|
-            \person ->
+            \aPerson ->
                 let
                     input : Value
                     input =
-                        encodePerson person
+                        encodePerson aPerson
                 in
-                    Json.Decode.decodeValue decoder input
-                        |> Expect.equal (Ok person)
+                Json.Decode.decodeValue decoder input
+                    |> Expect.equal (Ok aPerson)
         ]
 
 

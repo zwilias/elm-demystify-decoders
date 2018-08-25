@@ -3,6 +3,7 @@ module Exercise07 exposing (decoder)
 import Json.Decode exposing (Decoder, fail)
 
 
+
 {- This one is special.
 
    In the previous exercises, we've always used information from the javascript

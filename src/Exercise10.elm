@@ -1,6 +1,7 @@
-module Exercise10 exposing (decoder, Person, PersonDetails, Role(..))
+module Exercise10 exposing (Person, PersonDetails, Role(..), decoder)
 
-import Json.Decode exposing (fail, Decoder)
+import Json.Decode exposing (Decoder, fail)
+
 
 
 {- Let's try and do a complicated decoder, this time. No worries, nothing new

@@ -1,39 +1,39 @@
 module Exercise10.Tests exposing (all)
 
-import Test exposing (..)
+import Exercise10 exposing (Person, PersonDetails, Role(..), decoder)
 import Expect
-import Json.Decode exposing (decodeValue)
 import Fuzz exposing (Fuzzer, string)
+import Json.Decode exposing (decodeValue)
 import Json.Encode as Encode exposing (Value, null)
-import Exercise10 exposing (decoder, Person, PersonDetails, Role(..))
+import Test exposing (..)
 
 
 all : Test
 all =
     describe "Exercise 10"
         [ fuzz people "Decodes random people" <|
-            \people ->
+            \thePeople ->
                 let
                     input : Value
                     input =
-                        encodePeople people
+                        encodePeople thePeople
                 in
-                    decodeValue decoder input
-                        |> Expect.equal (Ok people)
+                decodeValue decoder input
+                    |> Expect.equal (Ok thePeople)
         ]
 
 
 encodePeople : List Person -> Value
 encodePeople =
-    List.map encodePerson >> Encode.list
+    Encode.list encodePerson
 
 
 encodePerson : Person -> Value
-encodePerson { username, role, details } =
+encodePerson aPerson =
     Encode.object
-        [ ( "username", Encode.string username )
-        , ( "role", encodeRole role )
-        , ( "details", encodePersonDetails details )
+        [ ( "username", Encode.string aPerson.username )
+        , ( "role", encodeRole aPerson.role )
+        , ( "details", encodePersonDetails aPerson.details )
         ]
 
 
@@ -41,13 +41,21 @@ encodePersonDetails : PersonDetails -> Value
 encodePersonDetails { registered, aliases } =
     Encode.object
         [ ( "registered", Encode.string registered )
-        , ( "aliases", List.map Encode.string aliases |> Encode.list )
+        , ( "aliases", Encode.list Encode.string aliases )
         ]
 
 
 encodeRole : Role -> Value
-encodeRole =
-    toString >> String.toLower >> Encode.string
+encodeRole aRole =
+    case aRole of
+        Newbie ->
+            Encode.string "newbie"
+
+        Regular ->
+            Encode.string "regular"
+
+        OldFart ->
+            Encode.string "oldfart"
 
 
 people : Fuzzer (List Person)
@@ -72,14 +80,8 @@ personDetails =
 
 role : Fuzzer Role
 role =
-    oneOf
+    Fuzz.oneOf
         [ Fuzz.constant Newbie
         , Fuzz.constant Regular
         , Fuzz.constant OldFart
         ]
-
-
-oneOf : List (Fuzzer a) -> Fuzzer a
-oneOf =
-    List.map ((,) 1)
-        >> Fuzz.frequency

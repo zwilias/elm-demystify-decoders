@@ -3,6 +3,7 @@ module Exercise04 exposing (decoder)
 import Json.Decode exposing (Decoder, fail)
 
 
+
 {- Something very powerful about decoding in Elm, is that it decouples the
    internal representation of your data from the external representation.
 

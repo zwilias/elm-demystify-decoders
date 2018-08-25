@@ -1,11 +1,11 @@
 module Exercise08.Tests exposing (all)
 
-import Test exposing (..)
+import Exercise08 exposing (Color(..), decoder)
 import Expect
-import Json.Decode exposing (decodeValue)
 import Fuzz exposing (Fuzzer, string)
+import Json.Decode exposing (decodeValue)
 import Json.Encode as Encode exposing (Value, null)
-import Exercise08 exposing (decoder, Color(..))
+import Test exposing (..)
 
 
 all : Test
@@ -26,5 +26,11 @@ all =
         , fuzz string "Fails when fed other values" <|
             \randomString ->
                 decodeValue (decoder randomString) null
-                    |> Expect.equal (Err <| "I ran into a `fail` decoder: I don't know a color named " ++ randomString)
+                    |> Expect.equal
+                        (Err
+                            (Json.Decode.Failure
+                                ("I don't know a color named " ++ randomString)
+                                null
+                            )
+                        )
         ]

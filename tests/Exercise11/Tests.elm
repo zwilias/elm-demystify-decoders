@@ -1,20 +1,20 @@
 module Exercise11.Tests exposing (all)
 
-import Test exposing (..)
-import Expect
-import Json.Decode exposing (decodeValue)
-import Fuzz exposing (Fuzzer, string)
-import Json.Encode as Encode exposing (Value, null)
 import Exercise11 exposing (decoder)
+import Expect
+import Fuzz exposing (Fuzzer, string)
+import Json.Decode exposing (decodeValue)
+import Json.Encode as Encode exposing (Value, null)
+import Test exposing (..)
 
 
 all : Test
 all =
     describe "Exercise 11"
         [ fuzz input "Decodes random input" <|
-            \input ->
-                decodeValue decoder (encodeInput input)
-                    |> Expect.equal (Ok (toList input))
+            \theInput ->
+                decodeValue decoder (encodeInput theInput)
+                    |> Expect.equal (Ok (toList theInput))
         ]
 
 
@@ -24,8 +24,8 @@ type Input
 
 
 toList : Input -> List Int
-toList input =
-    case input of
+toList theInput =
+    case theInput of
         Single value ->
             [ value ]
 
@@ -35,25 +35,19 @@ toList input =
 
 input : Fuzzer Input
 input =
-    oneOf
+    Fuzz.oneOf
         [ Fuzz.map Single Fuzz.int
         , Fuzz.map Multiple (Fuzz.list Fuzz.int)
         ]
 
 
 encodeInput : Input -> Value
-encodeInput input =
-    case input of
+encodeInput theInput =
+    case theInput of
         Single value ->
             Encode.object
                 [ ( "number", Encode.int value ) ]
 
         Multiple values ->
             Encode.object
-                [ ( "number", List.map Encode.int values |> Encode.list ) ]
-
-
-oneOf : List (Fuzzer a) -> Fuzzer a
-oneOf =
-    List.map ((,) 1)
-        >> Fuzz.frequency
+                [ ( "number", Encode.list Encode.int values ) ]

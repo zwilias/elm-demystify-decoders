@@ -1,34 +1,34 @@
 module Exercise12.Tests exposing (all)
 
-import Test exposing (..)
+import Exercise12 exposing (Tree(..), decoder)
 import Expect
-import Json.Decode exposing (decodeValue)
 import Fuzz exposing (Fuzzer, string)
+import Json.Decode exposing (decodeValue)
 import Json.Encode as Encode exposing (Value, null)
-import Exercise12 exposing (decoder, Tree(..))
+import Test exposing (..)
 
 
 all : Test
 all =
     describe "Exercise 12"
         [ fuzz leaf "Decodes random leaf" <|
-            \leaf ->
-                decodeValue decoder (encodeTree leaf)
-                    |> Expect.equal (Ok leaf)
+            \aLeaf ->
+                decodeValue decoder (encodeTree aLeaf)
+                    |> Expect.equal (Ok aLeaf)
         , fuzz (branch leaf) "Decodes branch with leaves" <|
-            \branch ->
-                decodeValue decoder (encodeTree branch)
-                    |> Expect.equal (Ok branch)
+            \aBranch ->
+                decodeValue decoder (encodeTree aBranch)
+                    |> Expect.equal (Ok aBranch)
         , fuzz (tree 3) "Decodes random trees" <|
-            \tree ->
-                decodeValue decoder (encodeTree tree)
-                    |> Expect.equal (Ok tree)
+            \aTree ->
+                decodeValue decoder (encodeTree aTree)
+                    |> Expect.equal (Ok aTree)
         ]
 
 
 encodeTree : Tree -> Value
-encodeTree tree =
-    case tree of
+encodeTree aTree =
+    case aTree of
         Leaf name val ->
             Encode.object
                 [ ( "name", Encode.string name )
@@ -38,7 +38,7 @@ encodeTree tree =
         Branch name children ->
             Encode.object
                 [ ( "name", Encode.string name )
-                , ( "children", List.map encodeTree children |> Encode.list )
+                , ( "children", Encode.list encodeTree children )
                 ]
 
 
@@ -56,8 +56,9 @@ tree : Int -> Fuzzer Tree
 tree maxDepth =
     if maxDepth == 0 then
         leaf
+
     else
-        Fuzz.frequency
-            [ ( 1, leaf )
-            , ( 1, branch (tree <| maxDepth - 1) )
+        Fuzz.oneOf
+            [ leaf
+            , branch (tree <| maxDepth - 1)
             ]
