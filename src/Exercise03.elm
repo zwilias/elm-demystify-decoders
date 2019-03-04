@@ -23,9 +23,12 @@ decoder =
     {- Alternative:
        Json.Decode.list (Json.Decode.string |> Json.Decode.map String.toUpper)
     -}
-    Json.Decode.list Json.Decode.string
-        |> Json.Decode.map (List.map String.toUpper)
+    Json.Decode.list upperString
 
+
+upperString : Decoder String
+upperString =
+    Json.Decode.map String.toUpper Json.Decode.String
 
 
 {- Once you think you're done, run the tests for this exercise from the root of
