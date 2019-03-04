@@ -25,7 +25,7 @@ decoder =
 
 upperString : Decoder String
 upperString =
-    Json.Decode.map String.toUpper Json.Decode.String
+    Json.Decode.map String.toUpper Json.Decode.string
 
 
 {- Once you think you're done, run the tests for this exercise from the root of
