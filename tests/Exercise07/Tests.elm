@@ -11,28 +11,23 @@ import Test exposing (..)
 all : Test
 all =
     describe "Exercise 07"
-        [ fuzz (jsValue 3) "Decode random JS value" <|
+        [ fuzz primitive "Decodes JS primitives" <|
+            \val ->
+                Json.Decode.decodeValue decoder val
+                    |> Expect.equal (Ok "sure.")
+        , fuzz structure "Decodes objects and lists" <|
             \val ->
                 Json.Decode.decodeValue decoder val
                     |> Expect.equal (Ok "sure.")
         ]
 
 
-jsValue : Int -> Fuzzer Value
-jsValue maxDepth =
-    if maxDepth == 0 then
-        Fuzz.oneOf primitives
-
-    else
-        Fuzz.oneOf (structure maxDepth ++ primitives)
-
-
-structure : Int -> List (Fuzzer Value)
-structure maxDepth =
+structure : Fuzzer Value
+structure =
     let
         list : Fuzzer Value
         list =
-            Fuzz.list (jsValue (maxDepth - 1))
+            Fuzz.list primitive
                 |> Fuzz.map (Encode.list identity)
 
         object : Fuzzer Value
@@ -40,18 +35,19 @@ structure maxDepth =
             Fuzz.map2
                 Tuple.pair
                 Fuzz.string
-                (jsValue (maxDepth - 1))
+                primitive
                 |> Fuzz.list
                 |> Fuzz.map Encode.object
     in
-    [ list, object ]
+    Fuzz.oneOf [ list, object ]
 
 
-primitives : List (Fuzzer Value)
-primitives =
-    [ Fuzz.map Encode.int Fuzz.int
-    , Fuzz.map Encode.float Fuzz.float
-    , Fuzz.map Encode.string Fuzz.string
-    , Fuzz.map Encode.bool Fuzz.bool
-    , Fuzz.constant Encode.null
-    ]
+primitive : Fuzzer Value
+primitive =
+    Fuzz.oneOf
+        [ Fuzz.map Encode.int Fuzz.int
+        , Fuzz.map Encode.float Fuzz.float
+        , Fuzz.map Encode.string Fuzz.string
+        , Fuzz.map Encode.bool Fuzz.bool
+        , Fuzz.constant Encode.null
+        ]

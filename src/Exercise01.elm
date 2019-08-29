@@ -20,7 +20,7 @@ import Json.Decode exposing (Decoder, fail)
    the *primitives* section looks like and their types, and try to adjust the
    following decoder so it can decode a JSON value that looks like `5`.
 
-   [1]: http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode
+   [1]: http://package.elm-lang.org/packages/elm/json/latest/Json-Decode
 -}
 
 
