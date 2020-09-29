@@ -1,6 +1,6 @@
 module Exercise01 exposing (decoder)
 
-import Json.Decode exposing (Decoder, fail)
+import Json.Decode exposing (Decoder, int)
 
 
 
@@ -26,7 +26,7 @@ import Json.Decode exposing (Decoder, fail)
 
 decoder : Decoder Int
 decoder =
-    fail "I always fail!"
+    int
 
 
 

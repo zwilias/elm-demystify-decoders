@@ -1,6 +1,6 @@
 module Exercise02 exposing (decoder)
 
-import Json.Decode exposing (Decoder, fail)
+import Json.Decode exposing (Decoder, list, string)
 
 
 
@@ -22,7 +22,7 @@ import Json.Decode exposing (Decoder, fail)
 
 decoder : Decoder (List String)
 decoder =
-    fail "I still need to be implemented!"
+    list string
 
 
 

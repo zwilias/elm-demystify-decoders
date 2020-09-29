@@ -1,6 +1,7 @@
 module Exercise03 exposing (decoder)
 
-import Json.Decode exposing (Decoder, fail)
+import Char
+import Json.Decode as JD exposing (Decoder, list, string)
 
 
 
@@ -19,7 +20,7 @@ import Json.Decode exposing (Decoder, fail)
 
 decoder : Decoder (List String)
 decoder =
-    fail "This is escalating quickly!"
+    list (JD.map (String.map Char.toUpper) string)
 
 
 
