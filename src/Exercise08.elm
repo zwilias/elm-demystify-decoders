@@ -38,7 +38,7 @@ decoder colorString =
    the project:
 
    - If you have installed `elm-test` globally:
-        `elm test tests/Exercise08`
+        `elm-test tests/Exercise08`
 
    - If you have installed locally using `npm`:
         `npm run elm-test tests/Exercise08`

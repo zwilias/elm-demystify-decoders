@@ -59,7 +59,7 @@ decoder =
    the project:
 
    - If you have installed `elm-test` globally:
-        `elm test tests/Exercise06`
+        `elm-test tests/Exercise06`
 
    - If you have installed locally using `npm`:
         `npm run elm-test tests/Exercise06`
