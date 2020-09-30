@@ -1,6 +1,6 @@
 module Exercise04 exposing (decoder)
 
-import Json.Decode exposing (Decoder, fail)
+import Json.Decode exposing (Decoder, field, int, map, string)
 
 
 
@@ -29,7 +29,7 @@ import Json.Decode exposing (Decoder, fail)
 
 decoder : Decoder Int
 decoder =
-    fail "tum tum tummmmm"
+    field "age" int
 
 
 
